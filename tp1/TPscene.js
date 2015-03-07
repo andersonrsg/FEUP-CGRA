@@ -70,7 +70,12 @@ TPscene.prototype.display = function () {
 	
 	// ---- END Background, camera and axis setup
 
-	
+	//__________Draws the objetc before its transformations
+	//_____________________Ex.3.3____&&____3.4_____________
+	this.translate(5.0,0.0,2.0);
+	this.obj.display();
+
+
 	// ---- BEGIN Geometric transformation section
 
 	// NOTE: OpenGL transformation matrices are transposed
@@ -104,10 +109,15 @@ TPscene.prototype.display = function () {
                 0.0, 0.0, 0.0, 1.0  ];
 
 	// Multiplication of the previous transformations
-		this.multMatrix(sca);     // GT = GT * sca
 
-	this.multMatrix(tra);     // GT = GT * tra
+	//this.multMatrix(sca);     // GT = GT * sca
+	this.scale(5.0,2.0,1.0);
+
+	//this.multMatrix(tra);     // GT = GT * tra
+	this.translate(5.0,0.0,2.0);
+
 	//this.multMatrix(rot);     // GT = GT * rot
+	//this.rotate(30.0*deg2rad,0.0,1.0,0.0);
 
 
 	// ---- END Geometric transformation section
