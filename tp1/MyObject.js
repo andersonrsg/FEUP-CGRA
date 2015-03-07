@@ -14,7 +14,6 @@ MyObject.prototype.constructor=MyObject;
 
 MyObject.prototype.initBuffers = function () {
 	this.vertices = [
-
             -0.5, -0.5, 0,
             0.5, -0.5, 0,
             -0.5, 0.5, 0,
