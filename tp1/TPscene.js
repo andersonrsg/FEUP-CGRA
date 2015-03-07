@@ -1,4 +1,3 @@
-
 function TPscene() {
     CGFscene.call(this);
 }
@@ -21,8 +20,9 @@ TPscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
 	this.axis=new CGFaxis(this);
-    this.obj = new MyObject(this);
+    this.obj = new MyQuad(this);
     this.cube = new MyUnitCube(this);
+    this.cub = new MyUnitCubeQuad(this);
 
 };
 
@@ -68,8 +68,9 @@ TPscene.prototype.display = function () {
 	this.axis.display();
 	
 	//Display Unit Cube
+//	this.cub.display();
 	this.cube.display();
-	
+
 	// ---- END Primitive drawing section
 
     this.shader.unbind();
