@@ -14,6 +14,7 @@ MyQuad.prototype.constructor=MyQuad;
 
 MyQuad.prototype.initBuffers = function () {
 	this.vertices = [
+
             -0.5, -0.5, 0,
             0.5, -0.5, 0,
             -0.5, 0.5, 0,
