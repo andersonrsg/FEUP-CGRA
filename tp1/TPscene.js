@@ -20,13 +20,9 @@ TPscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
 	this.axis=new CGFaxis(this);
-<<<<<<< HEAD
-    this.obj = new MyQuad(this);
-    this.cube = new MyUnitCube(this);
-    this.cub = new MyUnitCubeQuad(this);
-=======
-    this.obj = new MyObject(this);
->>>>>>> parent of 44a61bc... Feito até à alínea 4.3
+    this.quad = new MyQuad(this);
+//    this.cube = new MyUnitCube(this);
+    //this.cub = new MyUnitCubeQuad(this);
 
 };
 
@@ -75,72 +71,11 @@ TPscene.prototype.display = function () {
 	
 	// ---- END Background, camera and axis setup
 
-	//__________Draws the objetc before its transformations
-	//_____________________Ex.3.3____&&____3.4_____________
-	this.pushMatrix();
-	this.translate(5.0,0.0,2.0);
-	this.obj.display();
-	this.popMatrix();
-
-	// ---- BEGIN Geometric transformation section
-
-	// NOTE: OpenGL transformation matrices are transposed
-
-	// Translate (5, 0, 2)
+	this.quad.display();
 	
-    var tra = [   1.0, 0.0, 0.0, 0.0,
-                  0.0, 1.0, 0.0, 0.0,
-                  0.0, 0.0, 1.0, 0.0,
-                  5.0, 0.0, 2.0, 1.0  ];
-
-	// Rotate 30 degrees around Y
-	// These constants would normally be pre-computed at initialization time
-	// they are placed here just to simplify the example
-	
-<<<<<<< HEAD
 	//Display Unit Cube
 //	this.cub.display();
-	this.cube.display();
-
-=======
-	var deg2rad=Math.PI/180.0;
-	var a_rad=30.0*deg2rad;
-	var cos_a = Math.cos(a_rad);
-	var sin_a = Math.sin(a_rad);
-
-    var rot = [ cos_a,  0.0,  -sin_a,  0.0,
-                0.0,    1.0,   0.0,    0.0,
-                sin_a,  0.0,   cos_a,  0.0,
-                0.0,    0.0,   0.0,    1.0 ];
-
-	// Scaling by (5,2,1)
-
-    var sca = [ 5.0, 0.0, 0.0, 0.0,
-                0.0, 2.0, 0.0, 0.0,
-                0.0, 0.0, 1.0, 0.0,
-                0.0, 0.0, 0.0, 1.0  ];
-
-	// Multiplication of the previous transformations
-
-	//this.multMatrix(sca);     // GT = GT * sca
-	this.scale(5.0,2.0,1.0);
-
-	//this.multMatrix(tra);     // GT = GT * tra
-	this.translate(5.0,0.0,2.0);
-
-	//this.multMatrix(rot);     // GT = GT * rot
-	//this.rotate(30.0*deg2rad,0.0,1.0,0.0);
-	
-
-	// ---- END Geometric transformation section
-	
-
-	// ---- BEGIN Primitive drawing section
-
-	this.obj.display();
-	
->>>>>>> parent of 44a61bc... Feito até à alínea 4.3
-	// ---- END Primitive drawing section
+	//this.cube.display();
 
     this.shader.unbind();
 };
