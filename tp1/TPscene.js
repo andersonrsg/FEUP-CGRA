@@ -23,6 +23,8 @@ TPscene.prototype.init = function (application) {
 	this.axis=new CGFaxis(this);
     this.cube = new MyUnitCubeQuad(this);
     this.unitCube = new MyUnitCube(this);
+    this.table = new MyTable(this);
+    this.floor = new MyFloor(this);
 
 };
 
@@ -69,13 +71,17 @@ TPscene.prototype.display = function () {
 	
 	this.setDefaultAppearance();
 	
-	this.unitCube.display();
-	
+	//Translacao da mesa
 	this.pushMatrix();
-	this.translate(2.0, 0.0, 0.0);
-	this.cube.display();
+	this.translate(4,0,3);
+	this.table.display();
 	this.popMatrix();
 
+	//Translacao do chao
+	this.pushMatrix();
+	this.translate(4,0,3);
+	this.floor.display();
+	this.popMatrix();
 
 	// ---- END Geometric transformation section
 	
