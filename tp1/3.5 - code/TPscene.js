@@ -67,16 +67,16 @@ TPscene.prototype.display = function () {
 	this.axis.display();
 
 	this.setDefaultAppearance();
-	
+
 	// ---- END Background, camera and axis setup
 
 	//__________Draws the objetc before its transformations
 	//_____________________Ex.3.3____&&____3.4_____________
 	this.pushMatrix();
-	this.translate(5.0,0.0,2.0);
+	this.translate(0.0,5.0,0.0);
 	this.obj.display();
 	this.popMatrix();
-
+	//_____________________________________________________
 	// ---- BEGIN Geometric transformation section
 
 	// NOTE: OpenGL transformation matrices are transposed
