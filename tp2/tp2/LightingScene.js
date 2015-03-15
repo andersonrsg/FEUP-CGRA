@@ -40,8 +40,8 @@ LightingScene.prototype.init = function(application) {
 	this.materialA = new CGFappearance(this);
 	this.materialA.setAmbient(0.3,0.3,0.3,1);
 	this.materialA.setDiffuse(0.6,0.6,0.6,1);
-	this.materialA.setSpecular(/*0.2,0.2,0.2,1*/0/*.8*/,0.2/*.8*/,0.8,1);
-	this.materialA.setShininess(/*10*/120);
+	this.materialA.setSpecular(0,0.2,0.8,1);
+	this.materialA.setShininess(120);
 
 	this.materialB = new CGFappearance(this);
 	this.materialB.setAmbient(0.3,0.3,0.3,1);
@@ -51,9 +51,9 @@ LightingScene.prototype.init = function(application) {
 
 	
 	this.materialFloor = new CGFappearance(this);
-	this.materialFloor.setAmbient(0.2,0,0,1);
-	this.materialFloor.setDiffuse(0.2,0,0,1);
-	this.materialFloor.setSpecular(0.2,0,0,1);	
+	this.materialFloor.setAmbient(0.25,0.25,0.25,1);
+	this.materialFloor.setDiffuse(0.25,0.25,0.25,1);
+	this.materialFloor.setSpecular(0.25,0.25,0.25,1);	
 	this.materialFloor.setShininess(120);
 
 	this.materialWall = new CGFappearance(this);

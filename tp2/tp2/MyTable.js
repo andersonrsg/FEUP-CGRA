@@ -12,13 +12,13 @@ function MyTable(scene) {
     this.materialWood = new CGFappearance(this.scene);
 	this.materialWood.setAmbient(0.4,0.2,0,1);
 	this.materialWood.setDiffuse(0.4,0.2,0,1);
-	this.materialWood.setSpecular(0.4,0.2,0,1);	
+	this.materialWood.setSpecular(0.01,0.01,0.01,0.01);	
 	this.materialWood.setShininess(120);
 
 	this.materialMetal = new CGFappearance(this.scene);
 	this.materialMetal.setAmbient(0.24,0.24,0.24,1);
 	this.materialMetal.setDiffuse(0.24,0.24,0.24,1);
-	this.materialMetal.setSpecular(0.24,0.24,0.24,1);	
+	this.materialMetal.setSpecular(0.5,0.5,0.5,1);	
 	this.materialMetal.setShininess(120);
 };
 
