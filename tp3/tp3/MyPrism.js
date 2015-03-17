@@ -2,11 +2,11 @@
  * MyPrism
  * @constructor
  */
- function MyPrism(scene, slices, stacks) {
+ function MyPrism(scene/*, slices, stacks*/) {
  	CGFobject.call(this,scene);
 	
-	this.slices=slices;
-	this.stacks=stacks;
+	//this.slices=slices;
+	//this.stacks=stacks;
 
  	this.initBuffers();
  };
