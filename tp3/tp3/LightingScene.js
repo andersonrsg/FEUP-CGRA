@@ -33,7 +33,7 @@ LightingScene.prototype.init = function(application) {
 	this.wall = new Plane(this);
 	this.boardA = new Plane(this, BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this, BOARD_B_DIVISIONS);
-	this.prism = new MyPrism(this/*, 4, 4*/);
+	this.prism = new MyPrism(this, 8, 9);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -68,7 +68,7 @@ LightingScene.prototype.initCameras = function() {
 };
 
 LightingScene.prototype.initLights = function() {
-	this.setGlobalAmbientLight(0,0,0,0);
+	this.setGlobalAmbientLight(1.0,1.0,1.0,1.0);
 
 	this.shader.bind();
 	
@@ -137,16 +137,12 @@ LightingScene.prototype.display = function() {
 	this.materialDefault.apply();
 
 	// ---- END Background, camera and axis setup
-
-	
-	// ---- BEGIN Geometric transformation section
-
-	// ---- END Geometric transformation section
-
-
 	// ---- BEGIN Primitive drawing section
 
+	this.pushMatrix();
 	this.prism.display();
+	this.popMatrix();
+	
 /*
 	// Floor
 	this.materialFloor.apply();
