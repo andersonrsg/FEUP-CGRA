@@ -24,56 +24,79 @@
  	*/
 	
  	this.vertices = [];
-	for (var i = 0; i < this.slices; i++) {
-	this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
-	this.vertices.push(0);
-
-	this.vertices.push(Math.sin((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(0);
-
-	this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
-	this.vertices.push(this.stacks);
-
-	this.vertices.push(Math.sin((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(this.stacks);
-	}
-
  	this.indices = [];
-	for (var i = 0; i < this.slices; i++) {
-		this.indices.push(2*i);
-		this.indices.push(2*i+1);
-		this.indices.push(2*i+2);
+	this.normals = [];
+
+	//---------------stacks------------------
+	for (var q = 0; q < this.stacks; q++) {
+		//---------------slices------------------
+		for (var i = 0; i < this.slices; i++) {
 		
-		this.indices.push(2*i+1);
-		this.indices.push(2*i+3);
-		this.indices.push(2*i+2);
+		this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
+		this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
+		this.vertices.push(q);
 
-	}
+		this.vertices.push(Math.cos((i+1)*(2*Math.PI)/this.slices));
+		this.vertices.push(Math.sin((i+1)*(2*Math.PI)/this.slices));
+		this.vertices.push(q);
 
- 	//this.normals = [];
-	/*for (var i = 0; i < this.slices; i++) {
-	this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
-	this.vertices.push(0);
+		this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
+		this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
+		this.vertices.push(q+1);
 
-	this.vertices.push(Math.sin((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(0);
+		this.vertices.push(Math.cos((i+1)*(2*Math.PI)/this.slices));
+		this.vertices.push(Math.sin((i+1)*(2*Math.PI)/this.slices));
+		this.vertices.push(q+1);
 
-	this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
-	this.vertices.push(this.stacks);
+		}
 
-	this.vertices.push(Math.sin((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(Math.cos((i+1)*(2*Math.PI)/this.slices));
-	this.vertices.push(this.stacks);
-	}*/
 	
 
+	}
+
+
+	//---------------stacks------------------
+	for (var q = 0; q < this.stacks; q++) {
+		//---------------slices------------------
+		for (var i = 0; i < this.slices; i++) {
+
+			this.indices.push(this.slices*4*q+4*i);
+			this.indices.push(this.slices*4*q+4*i+1);
+			this.indices.push(this.slices*4*q+4*i+2);
+
+			this.indices.push(this.slices*4*q+4*i+3);
+			this.indices.push(this.slices*4*q+4*i+2);
+			this.indices.push(this.slices*4*q+4*i+1);
+
+		}
+	}
+
+
+	var angle = (2*Math.PI)/this.slices;
+
+	//---------------stacks------------------
+	for (var q = 0; q < this.stacks; q++) {
+		//---------------slices------------------
+			for (var i = 0; i < this.slices; i++) {
+	
+			this.normals.push(Math.cos(angle*(i+0.5)));
+			this.normals.push(Math.sin(angle*(i+0.5)));
+			this.normals.push(0);
+
+			this.normals.push(Math.cos(angle*(i+0.5)));
+			this.normals.push(Math.sin(angle*(i+0.5)));
+			this.normals.push(0);
+		
+			this.normals.push(Math.cos(angle*(i+0.5)));
+			this.normals.push(Math.sin(angle*(i+0.5)));
+			this.normals.push(0);
+
+			this.normals.push(Math.cos(angle*(i+0.5)));
+			this.normals.push(Math.sin(angle*(i+0.5)));
+			this.normals.push(0);
+
+		}
+	}
 
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();

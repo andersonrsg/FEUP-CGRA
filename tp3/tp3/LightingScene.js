@@ -33,7 +33,7 @@ LightingScene.prototype.init = function(application) {
 	this.wall = new Plane(this);
 	this.boardA = new Plane(this, BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this, BOARD_B_DIVISIONS);
-	this.prism = new MyPrism(this, 8, 9);
+	this.prism = new MyPrism(this, 8, 20);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -68,24 +68,45 @@ LightingScene.prototype.initCameras = function() {
 };
 
 LightingScene.prototype.initLights = function() {
-	this.setGlobalAmbientLight(1.0,1.0,1.0,1.0);
+	this.setGlobalAmbientLight(0,0,0,0);
 
 	this.shader.bind();
 	
 	// Positions for four lights
 	this.lights[0].setPosition(4, 6, 1, 1);
-	this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
-	this.lights[2].setPosition(10.5, 6.0, 5.0, 1.0);
+	this.lights[1].setPosition(-10.5, -6.0, -1.0, 1.0);
+	this.lights[2].setPosition(10.5, -6.0, 5.0, 1.0);
 	this.lights[3].setPosition(4, 6.0, 5.0, 1.0);
 
 	this.lights[0].setAmbient(0, 0, 0, 1);
 	this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
 	this.lights[0].setSpecular(1,1,0,1);
+	this.lights[0].setVisible(true);
 	this.lights[0].enable();
 
 	this.lights[1].setAmbient(0, 0, 0, 1);
 	this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[1].setSpecular(1,1,0,1);
+	this.lights[1].setVisible(true);
 	this.lights[1].enable();
+
+	this.lights[2].setAmbient(0, 0, 0, 1);
+	this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[2].setSpecular(1,1,0,1);
+	this.lights[2].setVisible(true);
+	this.lights[2].enable();
+
+	this.lights[3].setAmbient(0, 0, 0, 1);
+	this.lights[3].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[3].setSpecular(1,1,0,1);
+	this.lights[3].setVisible(true);
+	this.lights[3].enable();
+
+/*
+	this.lights[1].setAmbient(0, 0, 0, 1);
+	this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[1].enable();
+	this.lights[1].setVisible(true);
 
 	this.lights[2].setAmbient(0, 0, 0, 1);
 	this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -93,6 +114,7 @@ LightingScene.prototype.initLights = function() {
 	this.lights[2].setConstantAttenuation(0);
 	this.lights[2].setLinearAttenuation(1);
 	this.lights[2].setQuadraticAttenuation(0);
+	this.lights[2].setVisible(true);
 	this.lights[2].enable();
 
 	this.lights[3].setAmbient(0, 0, 0, 1);
@@ -101,8 +123,9 @@ LightingScene.prototype.initLights = function() {
 	this.lights[3].setConstantAttenuation(0);
 	this.lights[3].setLinearAttenuation(0.2);
 	this.lights[3].setQuadraticAttenuation(0);
+	this.lights[3].setVisible(true);
 	this.lights[3].enable();
-
+*/
 	this.shader.unbind();
 };
 
