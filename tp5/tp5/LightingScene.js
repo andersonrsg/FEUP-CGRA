@@ -286,7 +286,7 @@ LightingScene.prototype.display = function() {
 	this.materialMetal.apply();
 	this.pushMatrix();
 	this.translate(this.paperPlane.xTranslation, this.paperPlane.yTranslation, 8);
-	this.rotate(-5 * degToRad, 0, 0, 1);
+	this.rotate(this.paperPlane.rotZ * degToRad, 0, 0, 1);
 	this.rotate(this.paperPlane.rotX * degToRad, 1, 0, 0);
 
 	this.paperPlane.display();

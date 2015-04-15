@@ -9,7 +9,8 @@
  	CGFobject.call(this,scene);
 
 	this.xTranslation = 14;
-	this.yTranslation = 5;
+	this.yTranslation = 3.7;
+	this.rotZ = -10;
 	this.rotX = 0;
 	this.lastUpdate = -1;
 
@@ -72,13 +73,17 @@ MyPaperPlane.prototype.update = function(currTime) {
 	else if (this.xTranslation > 0.9) {
 		var diff = currTime - this.lastUpdate;
 		this.lastUpdate = currTime;
+
 		this.xTranslation -= (diff * (7/1000));
+		this.yTranslation += (diff * (0.8/1000));
 	}
-	else if (this.yTranslation > 0.3) {
+	else if (this.yTranslation > 0.2) {
 		var diff = currTime - this.lastUpdate;
 		this.lastUpdate = currTime;
+
 		this.yTranslation -= (diff *(7/1000));
-		this.rotX -= (diff * 600/1000);
+		this.rotZ -= (diff * 245/1000);
+		this.rotX -= (diff * 500/1000);
 	}
 }
 
