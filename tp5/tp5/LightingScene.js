@@ -40,7 +40,10 @@ LightingScene.prototype.init = function(application) {
 	this.cylinder = new MyCylinder(this, 8, 20);
 	this.lamp = new MyLamp(this, 25, 19);
 	this.clock = new MyClock(this, 12, 1);
-	this.paperPlane = new MyPaperPlane(this);
+	this.paperPlane1 = new MyPaperPlane(this, 14, 4);
+	this.paperPlane2 = new MyPaperPlane(this, 12, 11);
+	this.paperPlane3 = new MyPaperPlane(this, 5, 6);
+	this.paperPlane4 = new MyPaperPlane(this, 7, 9);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -228,15 +231,24 @@ LightingScene.prototype.display = function() {
 	this.leftWall.display();
 	this.popMatrix();
 
-	// First Table
+	//tables
 	this.pushMatrix();
-	this.translate(5, 0, 8);
+	this.translate(5, 0, 5);
 	this.table.display();
 	this.popMatrix();
 
-	// Second Table
 	this.pushMatrix();
-	this.translate(12, 0, 8);
+	this.translate(12, 0, 5);
+	this.table.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(5, 0, 10);
+	this.table.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(12, 0, 10);
 	this.table.display();
 	this.popMatrix();
 
@@ -258,38 +270,74 @@ LightingScene.prototype.display = function() {
 	this.boardB.display();
 	this.popMatrix();
 
-	//Coluna
-	this.pushMatrix();
+	//Colunas
 	this.stoneApearence.apply();
+
+	this.pushMatrix();
+	this.translate(14, 0, 14);
+	this.scale(0.4, 0.4, 0.4);
 	this.rotate(-90 * degToRad, 1, 0, 0);
-	this.scale(0.7, 0.7, 0.4);
-	this.translate(6, -20, 0);
 	this.cylinder.display();
 	this.popMatrix();
 
-
 	this.pushMatrix();
-	this.stoneApearence.apply();
+	this.translate(2, 0, 14);
+	this.scale(0.4, 0.4, 0.4);
 	this.rotate(-90 * degToRad, 1, 0, 0);
-	this.scale(0.7, 0.7, 0.4);
-	this.translate(18, -20, 0);
 	this.cylinder.display();
 	this.popMatrix();
 
+	this.pushMatrix();
+	this.translate(14, 0, 2);
+	this.scale(0.4, 0.4, 0.4);
+	this.rotate(-90 * degToRad, 1, 0, 0);
+	this.cylinder.display();
+	this.popMatrix();
+	
+	//Relogio
 	this.pushMatrix();
 	this.materialMetal.apply();
-	this.scale(0.7,0.7,0.3);
-	this.translate(10.3,10.3,0);
+	this.translate(7.25,7.2,0);
+	this.scale(0.7,0.7,0.1);
 	this.clock.display();
 	this.popMatrix();
 	
+	//Planes
 	this.materialMetal.apply();
 	this.pushMatrix();
-	this.translate(this.paperPlane.xTranslation, this.paperPlane.yTranslation, 8);
-	this.rotate(this.paperPlane.rotZ * degToRad, 0, 0, 1);
-	this.rotate(this.paperPlane.rotX * degToRad, 1, 0, 0);
+	this.translate(this.paperPlane1.xTranslation,
+		 this.paperPlane1.yTranslation,
+		 this.paperPlane1.zTranslation);
+	this.rotate(this.paperPlane1.rotZ * degToRad, 0, 0, 1);
+	this.rotate(this.paperPlane1.rotX * degToRad, 1, 0, 0);
+	this.paperPlane1.display();
+	this.popMatrix();
 
-	this.paperPlane.display();
+	this.pushMatrix();
+	this.translate(this.paperPlane2.xTranslation,
+		 this.paperPlane2.yTranslation,
+		 this.paperPlane2.zTranslation);
+	this.rotate(this.paperPlane2.rotZ * degToRad, 0, 0, 1);
+	this.rotate(this.paperPlane2.rotX * degToRad, 1, 0, 0);
+	this.paperPlane2.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(this.paperPlane3.xTranslation,
+		 this.paperPlane3.yTranslation,
+		 this.paperPlane3.zTranslation);
+	this.rotate(this.paperPlane3.rotZ * degToRad, 0, 0, 1);
+	this.rotate(this.paperPlane3.rotX * degToRad, 1, 0, 0);
+	this.paperPlane3.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(this.paperPlane4.xTranslation,
+		 this.paperPlane4.yTranslation,
+		 this.paperPlane4.zTranslation);
+	this.rotate(this.paperPlane4.rotZ * degToRad, 0, 0, 1);
+	this.rotate(this.paperPlane4.rotX * degToRad, 1, 0, 0);
+	this.paperPlane4.display();
 	this.popMatrix();
 
 	//-----------Why the transformation-----------------
@@ -301,5 +349,8 @@ LightingScene.prototype.display = function() {
 
 LightingScene.prototype.update = function(currTime) {
 	this.clock.update(currTime);
-	this.paperPlane.update(currTime);
+	this.paperPlane1.update(currTime);
+	this.paperPlane2.update(currTime);	
+	this.paperPlane3.update(currTime);
+	this.paperPlane4.update(currTime);
 };
