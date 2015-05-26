@@ -14,6 +14,10 @@ LightingScene.prototype = Object.create(CGFscene.prototype);
 LightingScene.prototype.constructor = LightingScene;
 
 LightingScene.prototype.init = function(application) {
+	this.option1 = true;
+	this.option2 = true;
+	this.speed = 3;
+
 	CGFscene.prototype.init.call(this, application);
 
 	this.initCameras();
@@ -40,6 +44,7 @@ LightingScene.prototype.init = function(application) {
 	this.cylinder = new MyCylinder(this, 8, 20);
 	this.lamp = new MyLamp(this, 25, 19);
 	this.clock = new MyClock(this, 12, 1);
+	this.robot = new MyRobot(this);
 
 	// Materials
 	this.materialDefault = new CGFappearance(this);
@@ -114,10 +119,13 @@ LightingScene.prototype.init = function(application) {
 	this.setUpdatePeriod(10);
 };
 
-
+LightingScene.prototype.doSomething = function ()
+{
+	console.log("Doing something...");
+};
 
 LightingScene.prototype.initCameras = function() {
-	this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(80,30,80), vec3.fromValues(0, 0, 0));
+	this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(80,60,80), vec3.fromValues(0, 0, 0));
 };
 
 LightingScene.prototype.initLights = function() {
@@ -296,6 +304,14 @@ LightingScene.prototype.display = function() {
 	this.translate(15,7.2,0);
 	this.scale(0.7,0.7,0.1);
 	this.clock.display();
+	this.popMatrix();
+
+	//Robot
+	this.pushMatrix();
+	this.materialDefault.apply();
+	this.translate(this.robot.Xmovement,5,this.robot.Zmovement);
+	this.rotate(this.robot.yRotation * degToRad, 0, 1, 0);
+	this.robot.display();
 	this.popMatrix();
 
 	//-----------Why the transformation-----------------
