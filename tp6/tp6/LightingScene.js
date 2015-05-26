@@ -14,8 +14,11 @@ LightingScene.prototype = Object.create(CGFscene.prototype);
 LightingScene.prototype.constructor = LightingScene;
 
 LightingScene.prototype.init = function(application) {
-	this.option1 = true;
-	this.option2 = true;
+	this.Luz_1 = true;
+	this.Luz_2 = true;
+	this.Luz_3 = true;
+	this.Luz_4 = true;
+	this.Relogio = true;
 	this.speed = 3;
 
 	CGFscene.prototype.init.call(this, application);
@@ -134,41 +137,35 @@ LightingScene.prototype.initLights = function() {
 	this.shader.bind();
 	
 	// Positions for four lights
-	this.lights[0].setPosition(16, 5, 16, 1);
-	this.lights[1].setPosition(10, 10, 6.0, 1.0);
-	this.lights[2].setPosition(5, 5, 5, 8.0);
-	this.lights[3].setPosition(10, 5.0, 5.0, 1.0);
-
+	this.lights[0].setPosition(10, 7.5, 10, 1);
+	this.lights[1].setPosition(10, 7.5, 20, 1);
+	this.lights[2].setPosition(20, 7.5, 10, 1);
+	this.lights[3].setPosition(20, 7.5, 20, 1);
 
 	this.lights[0].setAmbient(0, 0, 0, 1);
 	this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[0].setSpecular(1,1,1,1);
-	this.lights[0].setConstantAttenuation(0);
-	this.lights[0].setLinearAttenuation(1);
-	this.lights[0].setQuadraticAttenuation(0);
+	this.lights[0].setSpecular(1,1,0,1);
 	this.lights[0].enable();
+	this.lights[0].setVisible(true);
 
 	this.lights[1].setAmbient(0, 0, 0, 1);
 	this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
+	this.lights[1].setSpecular(1,1,0,1);
 	this.lights[1].enable();
 	this.lights[1].setVisible(true);
 
 	this.lights[2].setAmbient(0, 0, 0, 1);
 	this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[2].setSpecular(1,1,1,1);
-	this.lights[2].setConstantAttenuation(0);
-	this.lights[2].setLinearAttenuation(1);
-	this.lights[2].setQuadraticAttenuation(0);
+	this.lights[2].setSpecular(1,1,0,1);
 	this.lights[2].enable();
+	this.lights[2].setVisible(true);
 
 	this.lights[3].setAmbient(0, 0, 0, 1);
 	this.lights[3].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[3].setSpecular(1,1,1,1);
-	this.lights[3].setConstantAttenuation(0);
-	this.lights[3].setLinearAttenuation(1);
-	this.lights[3].setQuadraticAttenuation(0);
+	this.lights[3].setSpecular(1,1,0,1);
 	this.lights[3].enable();
-	
+	this.lights[3].setVisible(true);
+
 	for (var i = 0; i < 4; i++)
 		this.lights[i].setVisible(true);
 
@@ -237,24 +234,50 @@ LightingScene.prototype.display = function() {
 
 	//tables
 	this.pushMatrix();
-	this.translate(10, 0, 10);
+	this.translate(5, 0, 7.5);
 	this.table.display();
 	this.popMatrix();
 
 	this.pushMatrix();
-	this.translate(10, 0, 20);
+	this.translate(5, 0, 15);
 	this.table.display();
 	this.popMatrix();
 
 	this.pushMatrix();
-	this.translate(20, 0, 10);
+	this.translate(5, 0, 22.5);
 	this.table.display();
 	this.popMatrix();
 
 	this.pushMatrix();
-	this.translate(20, 0, 20);
+	this.translate(15, 0, 7.5);
 	this.table.display();
 	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(15, 0, 15);
+	this.table.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(15, 0, 22.5);
+	this.table.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(25, 0, 7.5);
+	this.table.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(25, 0, 15);
+	this.table.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.translate(25, 0, 22.5);
+	this.table.display();
+	this.popMatrix();
+
 
 	// Board A
 	this.pushMatrix();
@@ -298,6 +321,35 @@ LightingScene.prototype.display = function() {
 	this.cylinder.display();
 	this.popMatrix();
 	
+	//Lamp
+	this.pushMatrix();
+	this.materialMetal.apply();
+	this.translate(10,7.5,10);
+	this.rotate(90 * degToRad, 1, 0, 0);
+	this.lamp.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.materialMetal.apply();
+	this.translate(20,7.5,10);
+	this.rotate(90 * degToRad, 1, 0, 0);
+	this.lamp.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.materialMetal.apply();
+	this.translate(10,7.5,20);
+	this.rotate(90 * degToRad, 1, 0, 0);
+	this.lamp.display();
+	this.popMatrix();
+
+	this.pushMatrix();
+	this.materialMetal.apply();
+	this.translate(20,7.5,20);
+	this.rotate(90 * degToRad, 1, 0, 0);
+	this.lamp.display();
+	this.popMatrix();
+
 	//Relogio
 	this.pushMatrix();
 	this.materialMetal.apply();
@@ -309,8 +361,8 @@ LightingScene.prototype.display = function() {
 	//Robot
 	this.pushMatrix();
 	this.materialDefault.apply();
-	this.translate(this.robot.Xmovement,5,this.robot.Zmovement);
-	this.rotate(this.robot.yRotation * degToRad, 0, 1, 0);
+	//this.translate(this.robot.Xmovement,5,this.robot.Zmovement);
+	//this.rotate(this.robot.yRotation * degToRad, 0, 1, 0);
 	this.robot.display();
 	this.popMatrix();
 
@@ -322,5 +374,24 @@ LightingScene.prototype.display = function() {
 };
 
 LightingScene.prototype.update = function(currTime) {
-	this.clock.update(currTime);
+	if (this.Luz_1)
+		this.lights[0].enable();
+	if (this.Luz_2)
+		this.lights[1].enable();
+	if (this.Luz_3)
+		this.lights[2].enable();
+	if (this.Luz_4)
+		this.lights[3].enable();
+
+	if (!this.Luz_1)
+		this.lights[0].disable();
+	if (!this.Luz_2)
+		this.lights[1].disable();
+	if (!this.Luz_3)
+		this.lights[2].disable();
+	if (!this.Luz_4)
+		this.lights[3].disable();
+
+	if (this.Relogio)
+		this.clock.update(currTime);
 };

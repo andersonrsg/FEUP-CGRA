@@ -10,39 +10,43 @@ function MyRobot(scene) {
 	CGFobject.call(this,scene);
 	
 	this.yRotation = 0;
-	this.Xmovement = 15;
-	this.Zmovement = 15;
-	this.initBuffers();
+	this.Xmovement = 2;
+	this.Zmovement = 2;
+
+	this.body = new MyCylinder(this.scene, 12, 20);
+	this.bottom = new MyClockSurface(this.scene, 12, 1);
+	this.head = new MyLamp(this.scene, 25, 19);
+	
+	this.bottom.initBuffers();
+	this.body.initBuffers();
+	this.head.initBuffers();
 };
 
 MyRobot.prototype = Object.create(CGFobject.prototype);
 MyRobot.prototype.constructor=MyRobot;
 
-MyRobot.prototype.initBuffers = function () {
-	this.vertices = [
-            0.5, 0.3, 0,
-            -0.5, 0.3, 0,
-            0, 0.3, 2,
-			];
+MyRobot.prototype.display = function()
+{
+	this.scene.pushMatrix();
+	this.scene.translate(this.Xmovement, 0.5, this.Zmovement);
+	this.scene.scale(1, 0.15, 1);
+	this.scene.rotate(-90*degToRad, 1, 0, 0);
+	this.body.display();
+	this.scene.popMatrix();
 
-	this.indices = [
-            0, 1, 2, 
-        ];
-		
-	this.primitiveType=this.scene.gl.TRIANGLES;
+	this.scene.pushMatrix();
+	this.scene.translate(this.Xmovement, 3.5, this.Zmovement);
+	this.scene.rotate(-90 * degToRad, 1, 0, 0);
+	this.head.display();
+	this.scene.popMatrix();
 
-	this.normals = [
-	//TROCAR NORMAIS - ESTAO ERRADAS
-		0, 1, 0,
-		0, 1, 0,
-		0, 1, 0,
-	];
+	this.scene.pushMatrix();
+	this.scene.translate(this.Xmovement, 1.5, this.Zmovement);
+	this.scene.rotate(90 * degToRad, 1, 0, 0);
+	this.bottom.display();
+	this.scene.popMatrix();
 
-	this.texCoords = [
-	];
-
-	this.initGLBuffers();
-};
+}
 
 MyRobot.prototype.rotateLeft = function (speed)
 {
