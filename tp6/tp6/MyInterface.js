@@ -79,7 +79,7 @@ MyInterface.prototype.processKeyboard = function(event) {
 	}
 	else if (event.keyCode == 83 || event.keyCode == 115)
 	{
-		console.log("Key 'S' pressed");
+		this.scene.robot.moveBack(this.scene.speed);
 	}
 };
 

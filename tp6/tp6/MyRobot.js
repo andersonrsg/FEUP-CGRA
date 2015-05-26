@@ -56,6 +56,12 @@ MyRobot.prototype.rotateRight = function (speed)
 
 MyRobot.prototype.moveForward = function (speed)
 {
-	this.Xmovement += Math.sin(this.yRotation * degToRad) * (speed / 50);
-	this.Zmovement += Math.cos(this.yRotation * degToRad) * (speed / 50);
+	this.Xmovement += Math.sin(this.yRotation * degToRad) * (speed / 15);
+	this.Zmovement += Math.cos(this.yRotation * degToRad) * (speed / 15);
+};
+
+MyRobot.prototype.moveBack = function (speed)
+{
+	this.Xmovement -= Math.sin(this.yRotation * degToRad) * (speed / 30);
+	this.Zmovement -= Math.cos(this.yRotation * degToRad) * (speed / 30);
 };
