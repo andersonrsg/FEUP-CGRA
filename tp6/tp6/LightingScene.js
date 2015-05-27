@@ -49,6 +49,9 @@ LightingScene.prototype.init = function(application) {
 	this.clock = new MyClock(this, 12, 1);
 	this.robot = new MyRobot(this);
 
+	this.robotAppearanceList = [ 'Can' , 'Matrix' , 'Other' ];
+	this.currRobotAppearance = 0;
+
 	// Materials
 	this.materialDefault = new CGFappearance(this);
 
@@ -63,13 +66,6 @@ LightingScene.prototype.init = function(application) {
 	this.materialB.setDiffuse(0.6,0.6,0.6,1);
 	this.materialB.setSpecular(0.8,0.8,0.8,1);	
 	this.materialB.setShininess(120);
-
-	
-	this.materialFloor = new CGFappearance(this);
-	this.materialFloor.setAmbient(0.25,0.25,0.25,1);
-	this.materialFloor.setDiffuse(0.25,0.25,0.25,1);
-	this.materialFloor.setSpecular(0.25,0.25,0.25,1);	
-	this.materialFloor.setShininess(120);
 
 	this.materialMetal = new CGFappearance(this);
 	this.materialMetal.setAmbient(0.24,0.24,0.24,1);
@@ -88,7 +84,7 @@ LightingScene.prototype.init = function(application) {
 	this.windowAppearence.setDiffuse(1,1,0.6,1);
 	this.windowAppearence.setSpecular(1,1,0.6,1);	
 	this.windowAppearence.setShininess(10);
-	this.windowAppearence.loadTexture("/CGRA-code/tp4/resources/images/window.png");
+	this.windowAppearence.loadTexture("/CGRA-code/tp6/resources/images/window.png");
 	this.windowAppearence.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
 	this.floorApearence = new CGFappearance(this);
@@ -96,29 +92,29 @@ LightingScene.prototype.init = function(application) {
 	this.floorApearence.setDiffuse(0.25,0.25,0.25,1);
 	this.floorApearence.setSpecular(0.25,0.25,0.25,1);	
 	this.floorApearence.setShininess(5);
-	this.floorApearence.loadTexture("/CGRA-code/tp4/resources/images/floor.png");
+	this.floorApearence.loadTexture("/CGRA-code/tp6/resources/images/floor.png");
 
 	this.slidesApearence = new CGFappearance(this);
 	this.slidesApearence.setAmbient(0.25,0.25,0.25,1);
 	this.slidesApearence.setDiffuse(0.75,0.75,0.75,1);
 	this.slidesApearence.setSpecular(0.25,0.25,0.25,1);	
 	this.slidesApearence.setShininess(5);
-	this.slidesApearence.loadTexture("/CGRA-code/tp4/resources/images/slides.png");
+	this.slidesApearence.loadTexture("/CGRA-code/tp6/resources/images/slides.png");
 
 	this.boardApearence = new CGFappearance(this);
 	this.boardApearence.setAmbient(0.25,0.25,0.25,1);
 	this.boardApearence.setDiffuse(0.85,0.85,0.85,1);
 	this.boardApearence.setSpecular(0.65,0.65,0.65,1);	
 	this.boardApearence.setShininess(60);
-	this.boardApearence.loadTexture("/CGRA-code/tp4/resources/images/board.png");
+	this.boardApearence.loadTexture("/CGRA-code/tp6/resources/images/board.png");
 
 	this.stoneApearence = new CGFappearance(this);
 	this.stoneApearence.setAmbient(0.25,0.25,0.25,1);
 	this.stoneApearence.setDiffuse(0.75,0.75,0.75,1);
 	this.stoneApearence.setSpecular(0.25,0.25,0.25,1);	
 	this.stoneApearence.setShininess(5);
-	this.stoneApearence.loadTexture("/CGRA-code/tp4/resources/images/stone.png");
-	
+	this.stoneApearence.loadTexture("/CGRA-code/tp6/resources/images/stone.png");
+
 	this.setUpdatePeriod(10);
 };
 
@@ -132,7 +128,7 @@ LightingScene.prototype.initCameras = function() {
 };
 
 LightingScene.prototype.initLights = function() {
-	this.setGlobalAmbientLight(0.4,0.4,0.4,0.4);
+	this.setGlobalAmbientLight(0,0,0,0);
 
 	this.shader.bind();
 	
@@ -357,12 +353,12 @@ LightingScene.prototype.display = function() {
 	this.scale(0.7,0.7,0.1);
 	this.clock.display();
 	this.popMatrix();
-
+	
 	//Robot
 	this.pushMatrix();
 	this.materialDefault.apply();
-	//this.translate(this.robot.Xmovement,5,this.robot.Zmovement);
-	//this.rotate(this.robot.yRotation * degToRad, 0, 1, 0);
+	this.translate(this.robot.Xmovement,1,this.robot.Zmovement);
+	this.rotate(this.robot.yRotation * degToRad, 0, 1, 0);
 	this.robot.display();
 	this.popMatrix();
 
@@ -391,6 +387,28 @@ LightingScene.prototype.update = function(currTime) {
 		this.lights[2].disable();
 	if (!this.Luz_4)
 		this.lights[3].disable();
+	
+	if (this.currRobotAppearance == 'Can')
+	{
+		this.robot.ApIndex = 0;
+		this.robot.wheel.ApIndex = 0;
+		this.robot.leftArm.ApIndex = 0;
+		this.robot.rightArm.ApIndex = 0;
+	}
+	if (this.currRobotAppearance == 'Matrix')
+	{
+		this.robot.ApIndex = 1;
+		this.robot.wheel.ApIndex = 1;
+		this.robot.leftArm.ApIndex = 1;
+		this.robot.rightArm.ApIndex = 1;
+	}
+	if (this.currRobotAppearance == 'Other')
+	{
+		this.robot.ApIndex = 2;
+		this.robot.wheel.ApIndex = 2;
+		this.robot.leftArm.ApIndex = 2;
+		this.robot.rightArm.ApIndex = 2;
+	}
 
 	if (this.Relogio)
 		this.clock.update(currTime);

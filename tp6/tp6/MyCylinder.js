@@ -15,13 +15,6 @@
  MyCylinder.prototype.constructor = MyCylinder;
 
  MyCylinder.prototype.initBuffers = function() {
- 	/*
- 	* TODO:
- 	* Replace the following lines in order to build a prism with a **Math.single mesh**.
- 	*
- 	* How can the vertices, indices and normals arrays be defined to
- 	* build a prism with varying number of slices and stacks?
- 	*/
 	
  	this.vertices = [];
  	this.indices = [];
@@ -29,20 +22,19 @@
 	this.texCoords = [];
 
 	//---------------stacks------------------
-	for (var q = 0; q <= this.stacks; q++) {
+	for (var q = 0; q <= this.stacks;q++) {
 		//---------------slices------------------
 		for (var i = 0; i < this.slices; i++) {
-		this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
-		this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
-		this.vertices.push(q);
+			this.vertices.push(Math.cos(i*(2*Math.PI)/this.slices));
+			this.vertices.push(Math.sin(i*(2*Math.PI)/this.slices));
+			this.vertices.push(q);
 
-		this.normals.push(Math.cos(i*(2*Math.PI)/this.slices));
-		this.normals.push(Math.sin(i*(2*Math.PI)/this.slices));
-		this.normals.push(q);
+			this.normals.push(Math.cos(i*(2*Math.PI)/this.slices));
+			this.normals.push(Math.sin(i*(2*Math.PI)/this.slices));
+			this.normals.push(0);
 		}
 	}
 
-	//---------------stacks------------------
 	for (var q = 0; q < this.stacks; q++) {
 		//---------------slices------------------
 		for (var i = 0; i < this.slices; i++) {
@@ -62,7 +54,6 @@
 				}
 		}
 	}
-
 
 	var s = 0;
 	var t = 0;

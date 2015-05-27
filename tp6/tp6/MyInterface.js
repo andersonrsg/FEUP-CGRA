@@ -60,6 +60,9 @@ MyInterface.prototype.init = function(application) {
 	lights.add(this.scene, 'Luz_3');
 	lights.add(this.scene, 'Luz_4');
 	//------------------------------------------------------------------------------------------------
+	this.gui.add(this.scene, 'currRobotAppearance', this.scene.robotAppearanceList);
+	
+
 	return true;
 };
 
