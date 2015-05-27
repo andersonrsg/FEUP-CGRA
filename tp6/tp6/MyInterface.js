@@ -88,11 +88,15 @@ MyInterface.prototype.processKeyboard = function(event) {
 	}
 	else if (event.keyCode == 87 || event.keyCode == 119)
 	{
+		this.scene.robot.moveArms(this.scene.speed);
 		this.scene.robot.moveForward(this.scene.speed);
 	}
 	else if (event.keyCode == 83 || event.keyCode == 115)
 	{
+		this.scene.robot.moveArms(this.scene.speed);
 		this.scene.robot.moveBack(this.scene.speed);
 	}
+	else if (event.keyCode == 104 || event.keyCode == 72)
+		this.scene.robot.handMove = 1;
 };
 

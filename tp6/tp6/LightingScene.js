@@ -412,4 +412,6 @@ LightingScene.prototype.update = function(currTime) {
 
 	if (this.Relogio)
 		this.clock.update(currTime);
+
+	this.robot.update(currTime);
 };
