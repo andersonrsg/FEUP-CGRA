@@ -14,9 +14,9 @@ LightingScene.prototype = Object.create(CGFscene.prototype);
 LightingScene.prototype.constructor = LightingScene;
 
 LightingScene.prototype.init = function(application) {
-	this.Luz_1 = true;
+	this.Luz_1 = false;
 	this.Luz_2 = true;
-	this.Luz_3 = true;
+	this.Luz_3 = false;
 	this.Luz_4 = true;
 	this.Relogio = true;
 	this.speed = 3;
@@ -39,7 +39,7 @@ LightingScene.prototype.init = function(application) {
 	// Scene elements
 	this.table = new MyTable(this);
 	this.wall = new Plane(this);
-	this.leftWall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
+	this.leftWall = new MyWindow(this);
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.boardA = new Plane(this,-0.17, 1.3, 0.1, 0.8, BOARD_A_DIVISIONS);
 	this.boardB = new Plane(this,0, 1, 0, 1, BOARD_B_DIVISIONS);
@@ -48,6 +48,7 @@ LightingScene.prototype.init = function(application) {
 	this.lamp = new MyLamp(this, 25, 19);
 	this.clock = new MyClock(this, 12, 1);
 	this.robot = new MyRobot(this);
+	this.view = new Plane(this,0, 1, 0, 1, BOARD_B_DIVISIONS);
 
 	this.robotAppearanceList = [ 'Can' , 'Matrix' , 'Other' ];
 	this.currRobotAppearance = 0;
@@ -74,19 +75,19 @@ LightingScene.prototype.init = function(application) {
 	this.materialMetal.setShininess(120);
 
 	this.materialWall = new CGFappearance(this);
-	this.materialWall.setAmbient(1,1,0.6,1);
-	this.materialWall.setDiffuse(1,1,0.6,1);
-	this.materialWall.setSpecular(1,1,0.6,1);	
-	this.materialWall.setShininess(120);
+	this.materialWall.setAmbient(0.3,0.3,0.3,1);
+	this.materialWall.setDiffuse(0.9,0.9,0.9,1);
+	this.materialWall.setSpecular(0.1,0.1,0.1,1);	
+	this.materialWall.setShininess(2);
 
 	this.windowAppearence = new CGFappearance(this);
-	this.windowAppearence.setAmbient(1,1,0.6,1);
-	this.windowAppearence.setDiffuse(1,1,0.6,1);
-	this.windowAppearence.setSpecular(1,1,0.6,1);	
-	this.windowAppearence.setShininess(10);
+	this.windowAppearence.setAmbient(0.3,0.3,0.3,1);
+	this.windowAppearence.setDiffuse(0.9,0.9,0.9,1);
+	this.windowAppearence.setSpecular(0.1,0.1,0.1,1);	
+	this.windowAppearence.setShininess(1);
 	this.windowAppearence.loadTexture("/CGRA-code/tp6/resources/images/window.png");
 	this.windowAppearence.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-
+	
 	this.floorApearence = new CGFappearance(this);
 	this.floorApearence.setAmbient(0.25,0.25,0.25,1);
 	this.floorApearence.setDiffuse(0.25,0.25,0.25,1);
@@ -115,6 +116,13 @@ LightingScene.prototype.init = function(application) {
 	this.stoneApearence.setShininess(5);
 	this.stoneApearence.loadTexture("/CGRA-code/tp6/resources/images/stone.png");
 
+	this.materialView = new CGFappearance(this);
+	this.materialView.setAmbient(0.25,0.25,0.25,1);
+	this.materialView.setDiffuse(0.75,0.75,0.75,1);
+	this.materialView.setSpecular(0.25,0.25,0.25,1);	
+	this.materialView.setShininess(5);
+	this.materialView.loadTexture("/CGRA-code/tp6/resources/images/view.jpg");
+
 	this.setUpdatePeriod(10);
 };
 
@@ -124,11 +132,11 @@ LightingScene.prototype.doSomething = function ()
 };
 
 LightingScene.prototype.initCameras = function() {
-	this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(80,60,80), vec3.fromValues(0, 0, 0));
+	this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(75,15,25), vec3.fromValues(0, 2, 15));
 };
 
 LightingScene.prototype.initLights = function() {
-	this.setGlobalAmbientLight(0,0,0,0);
+	this.setGlobalAmbientLight(0.3,0.3,0.3,0.3);
 
 	this.shader.bind();
 	
@@ -139,28 +147,29 @@ LightingScene.prototype.initLights = function() {
 	this.lights[3].setPosition(20, 7.5, 20, 1);
 
 	this.lights[0].setAmbient(0, 0, 0, 1);
+	this.lights[0].setSpecular( 1, 1, 0, 1);
 	this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[0].setSpecular(1,1,0,1);
 	this.lights[0].enable();
-	this.lights[0].setVisible(true);
 
 	this.lights[1].setAmbient(0, 0, 0, 1);
 	this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[1].setSpecular(1,1,0,1);
 	this.lights[1].enable();
-	this.lights[1].setVisible(true);
 
 	this.lights[2].setAmbient(0, 0, 0, 1);
 	this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[2].setSpecular(1,1,0,1);
+	this.lights[2].setSpecular(1.0, 1.0, 1.0, 1.0);
+	this.lights[2].setLinearAttenuation(1);
+	this.lights[2].setConstantAttenuation(0);
+	this.lights[2].setQuadraticAttenuation(0);
 	this.lights[2].enable();
-	this.lights[2].setVisible(true);
 
 	this.lights[3].setAmbient(0, 0, 0, 1);
+	this.lights[3].setSpecular( 1, 1, 0, 1);
 	this.lights[3].setDiffuse(1.0, 1.0, 1.0, 1.0);
-	this.lights[3].setSpecular(1,1,0,1);
+	this.lights[3].setLinearAttenuation(0.5);
+	this.lights[3].setConstantAttenuation(0.5);
+	this.lights[3].setQuadraticAttenuation(0.2);
 	this.lights[3].enable();
-	this.lights[3].setVisible(true);
 
 	for (var i = 0; i < 4; i++)
 		this.lights[i].setVisible(true);
@@ -219,31 +228,15 @@ LightingScene.prototype.display = function() {
 	this.wall.display();
 	this.popMatrix();
 
-	this.windowAppearence.apply();
 	// Plane Wall
 	this.pushMatrix();
-	this.translate(0, 4, 15);
+	this.translate(0, 4, 13.6);
 	this.rotate(90 * degToRad, 0, 1, 0);
-	this.scale(30, 8, 0.2);
+	this.scale(27.25, 8, 0.2);
 	this.leftWall.display();
 	this.popMatrix();
 
 	//tables
-	this.pushMatrix();
-	this.translate(5, 0, 7.5);
-	this.table.display();
-	this.popMatrix();
-
-	this.pushMatrix();
-	this.translate(5, 0, 15);
-	this.table.display();
-	this.popMatrix();
-
-	this.pushMatrix();
-	this.translate(5, 0, 22.5);
-	this.table.display();
-	this.popMatrix();
-
 	this.pushMatrix();
 	this.translate(15, 0, 7.5);
 	this.table.display();
@@ -318,29 +311,27 @@ LightingScene.prototype.display = function() {
 	this.popMatrix();
 	
 	//Lamp
+	this.materialWall.apply();
+	
 	this.pushMatrix();
-	this.materialMetal.apply();
 	this.translate(10,7.5,10);
 	this.rotate(90 * degToRad, 1, 0, 0);
 	this.lamp.display();
 	this.popMatrix();
 
 	this.pushMatrix();
-	this.materialMetal.apply();
 	this.translate(20,7.5,10);
 	this.rotate(90 * degToRad, 1, 0, 0);
 	this.lamp.display();
 	this.popMatrix();
 
 	this.pushMatrix();
-	this.materialMetal.apply();
 	this.translate(10,7.5,20);
 	this.rotate(90 * degToRad, 1, 0, 0);
 	this.lamp.display();
 	this.popMatrix();
 
 	this.pushMatrix();
-	this.materialMetal.apply();
 	this.translate(20,7.5,20);
 	this.rotate(90 * degToRad, 1, 0, 0);
 	this.lamp.display();
@@ -357,9 +348,18 @@ LightingScene.prototype.display = function() {
 	//Robot
 	this.pushMatrix();
 	this.materialDefault.apply();
-	this.translate(this.robot.Xmovement,1,this.robot.Zmovement);
+	this.translate(this.robot.Xmovement,0.8,this.robot.Zmovement);
 	this.rotate(this.robot.yRotation * degToRad, 0, 1, 0);
 	this.robot.display();
+	this.popMatrix();
+
+	//View
+	this.pushMatrix();
+	this.materialView.apply();
+	this.translate(-50, 4, 15);
+	this.rotate(90 * degToRad, 0, 1, 0);
+	this.scale(200, 50, 0.2);
+	this.view.display();
 	this.popMatrix();
 
 	//-----------Why the transformation-----------------

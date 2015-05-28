@@ -96,7 +96,10 @@ MyInterface.prototype.processKeyboard = function(event) {
 		this.scene.robot.moveArms(this.scene.speed);
 		this.scene.robot.moveBack(this.scene.speed);
 	}
-	else if (event.keyCode == 104 || event.keyCode == 72)
-		this.scene.robot.handMove = 1;
+	else if (event.keyCode == 111 || event.keyCode == 79)
+	{
+		if(this.scene.robot.handMove == 0)
+			this.scene.robot.handMove = 1;
+	}
 };
 

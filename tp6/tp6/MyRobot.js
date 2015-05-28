@@ -232,6 +232,16 @@ MyRobot.prototype.moveForward = function (speed)
 
 	this.leftWheelRot += (speed / 15) / 1; //a dividir pelo raio
 	this.rightWheelRot += (speed / 15) / 1; //a dividir pelo raio
+
+	if (this.Xmovement < 2)
+		this.Xmovement = 2;
+	if (this.Xmovement > 29)
+		this.Xmovement = 29;
+
+	if (this.Zmovement < 2)
+		this.Zmovement = 2;
+	if (this.Zmovement > 29)
+		this.Zmovement = 29;
 };
 
 MyRobot.prototype.moveBack = function (speed)
@@ -241,6 +251,16 @@ MyRobot.prototype.moveBack = function (speed)
 
 	this.leftWheelRot -= (speed / 30) / 1; //a dividir pelo raio
 	this.rightWheelRot -= (speed / 30) / 1; //a dividir pelo raio
+
+	if (this.Xmovement < 2)
+		this.Xmovement = 2;
+	if (this.Xmovement > 29)
+		this.Xmovement = 29;
+
+	if (this.Zmovement < 2)
+		this.Zmovement = 2;
+	if (this.Zmovement > 29)
+		this.Zmovement = 29;
 };
 
 MyRobot.prototype.moveArms = function (speed)
