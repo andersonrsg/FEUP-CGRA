@@ -84,7 +84,7 @@ LightingScene.prototype.init = function(application) {
 	this.windowAppearence.setDiffuse(1,1,0.6,1);
 	this.windowAppearence.setSpecular(1,1,0.6,1);	
 	this.windowAppearence.setShininess(10);
-	this.windowAppearence.loadTexture("/CGRA-code/tp4/resources/images/window.png");
+	this.windowAppearence.loadTexture("/CGRA-code/tp6/resources/images/window.png");
 	this.windowAppearence.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
 	this.floorApearence = new CGFappearance(this);
@@ -92,28 +92,28 @@ LightingScene.prototype.init = function(application) {
 	this.floorApearence.setDiffuse(0.25,0.25,0.25,1);
 	this.floorApearence.setSpecular(0.25,0.25,0.25,1);	
 	this.floorApearence.setShininess(5);
-	this.floorApearence.loadTexture("/CGRA-code/tp4/resources/images/floor.png");
+	this.floorApearence.loadTexture("/CGRA-code/tp6/resources/images/floor.png");
 
 	this.slidesApearence = new CGFappearance(this);
 	this.slidesApearence.setAmbient(0.25,0.25,0.25,1);
 	this.slidesApearence.setDiffuse(0.75,0.75,0.75,1);
 	this.slidesApearence.setSpecular(0.25,0.25,0.25,1);	
 	this.slidesApearence.setShininess(5);
-	this.slidesApearence.loadTexture("/CGRA-code/tp4/resources/images/slides.png");
+	this.slidesApearence.loadTexture("/CGRA-code/tp6/resources/images/slides.png");
 
 	this.boardApearence = new CGFappearance(this);
 	this.boardApearence.setAmbient(0.25,0.25,0.25,1);
 	this.boardApearence.setDiffuse(0.85,0.85,0.85,1);
 	this.boardApearence.setSpecular(0.65,0.65,0.65,1);	
 	this.boardApearence.setShininess(60);
-	this.boardApearence.loadTexture("/CGRA-code/tp4/resources/images/board.png");
+	this.boardApearence.loadTexture("/CGRA-code/tp6/resources/images/board.png");
 
 	this.stoneApearence = new CGFappearance(this);
 	this.stoneApearence.setAmbient(0.25,0.25,0.25,1);
 	this.stoneApearence.setDiffuse(0.75,0.75,0.75,1);
 	this.stoneApearence.setSpecular(0.25,0.25,0.25,1);	
 	this.stoneApearence.setShininess(5);
-	this.stoneApearence.loadTexture("/CGRA-code/tp4/resources/images/stone.png");
+	this.stoneApearence.loadTexture("/CGRA-code/tp6/resources/images/stone.png");
 	
 	this.setUpdatePeriod(10);
 };
