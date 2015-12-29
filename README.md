@@ -1,4 +1,4 @@
-# CGRA-code
+# FEUP - CGRA
 
 Este repositório contém o código realizado nas fichas e projeto da Unidade Curricular de CGRA - FEUP.
 
